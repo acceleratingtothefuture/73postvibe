@@ -1,45 +1,183 @@
 <!DOCTYPE html>
-<!-- https://prod.liveshare.vsengsaas.visualstudio.com/join?F583BCA7853B1D0FB3AF690B55D035960E9B -->
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Imperial County DA · Dashboards</title>
+
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- styles -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js" defer></script>
 </head>
-<body id="wholebody">
-    <nav id="navbar">
-        <div id="navbar-text">
-            <div id="navbar-office-name">Imperial County District Attorney's Office</div>
-            <div id="navbar-DA-name">George Marquez, District Attorney</div>
-        </div>
-        <img id="logo" src="LOGO-IMPERIAL-COUNTY-DAmid.png">
-    </nav>
-    <section id="hero">
-        <h1 id="heroheader">Data Dashboards</h1>
-        <p id="herotext">Data transparency &amp data-driven decision-making</p>
+
+<body>
+
+  <!-- ===== NAVBAR ===================================================== -->
+  <header class="nav">
+    <div class="branding">
+      <span class="brand-main">Imperial County District Attorney’s Office</span>
+      <span class="brand-sub">George Marquez, District Attorney</span>
+    </div>
+    <img class="logo" src="LOGO-IMPERIAL-COUNTY-DAmid.png" alt="County seal">
+  </header>
+
+  <!-- ===== HERO ======================================================= -->
+  <section class="hero">
+    <h1>Data Dashboards</h1>
+    <p>Data transparency &amp; data-driven decision-making</p>
+  </section>
+
+  <!-- ===== QUICK LINKS =============================================== -->
+  <nav class="quick-links">
+    <a href="#arrests"   class="link-btn">Arrests &amp; Prosecutions</a>
+    <a href="#actions"   class="link-btn">DA Actions</a>
+    <a href="#victim"    class="link-btn">Victim Services</a>
+    <a href="#special"   class="link-btn">Special Crimes</a>
+    <a href="#narcotics" class="link-btn">Narcotics</a>
+    <a href="#numbers"   class="link-btn">By the Numbers</a>
+  </nav>
+
+  <main>
+
+    <!-- ===== 1 · ARRESTS & PROSECUTIONS ============================== -->
+    <section id="arrests" class="dash">
+      <h2>Arrests &amp; Prosecutions</h2>
+
+      <div class="wrap">
+        <div class="chart"><canvas id="arrestsChart"></canvas></div>
+
+        <form class="controls">
+          <label>Year
+            <input id="arrestsYear" type="range" min="2011" max="2025" value="2025">
+            <span id="arrestsYearOut">2025</span>
+          </label>
+
+          <label>Crime type
+            <select id="arrestsType">
+              <option>Violent</option>
+              <option>Non-Violent</option>
+            </select>
+          </label>
+
+          <details class="info"><summary>About this data</summary>
+            Arrests come from local law-enforcement logs. Prosecutions are charges the DA filed in the same calendar year.
+          </details>
+        </form>
+      </div>
     </section>
-    <section id="quick-links">
-        <a href="#arrests-and-prosecutions" class="btn-link">Arrests & Prosecutions</a>
-        <a href="#attorney-actions" class="btn-link">Attorney Actions</a>
-        <a href="#victim-services" class="btn-link">Victim Services</a>
-        <a href="#special-crimes-unit" class="btn-link">Special Crimes Unit</a>
-        <a href="#narcotics" class="btn-link">Narcotics</a>
-        <a href="#numbers" class="btn-link">By the Numbers</a>
+
+    <!-- ===== 2 · DA ACTIONS ========================================== -->
+    <section id="actions" class="dash">
+      <h2>DA Actions</h2>
+
+      <div class="wrap">
+        <div class="chart square"><canvas id="severityPie"></canvas></div>
+        <div class="chart square"><canvas id="outcomePie"></canvas></div>
+      </div>
+
+      <form class="controls single">
+        <label>Year
+          <input id="actionsYear" type="range" min="2011" max="2025" value="2025">
+          <span id="actionsYearOut">2025</span>
+        </label>
+
+        <details class="info"><summary>About this data</summary>
+          Severity follows California Penal Code. Outcomes reflect each defendant’s final court disposition in the selected year.
+        </details>
+      </form>
     </section>
-    <main id="main">
-        <div id="main-background">
-            <div id="arrests-and-prosecutions"></div>
-            <div id="attorney-actions"></div>
-            <div id="victim-services"></div>
-            <div id="special-crimes-unit"></div>
-            <div id="numbers"></div>
-            <div id="narcotics"></div>
-        </div>
-    </main>
-    <footer id="footer">
-       <p id="copyright">&copy 2025 Imperial County District Attorney's Office</p> 
-    </footer>
+
+    <!-- ===== 3 · VICTIM SERVICES ===================================== -->
+    <section id="victim" class="dash">
+      <h2>Victim Services</h2>
+
+      <div class="wrap">
+        <div class="chart"><canvas id="victimLine"></canvas></div>
+
+        <form class="controls">
+          <label>Year
+            <input id="victimYear" type="range" min="2011" max="2025" value="2025">
+            <span id="victimYearOut">2025</span>
+          </label>
+
+          <label>Service
+            <select id="victimType">
+              <option>Compensation</option>
+              <option>Court Escorts</option>
+              <option>Crisis Counseling</option>
+            </select>
+          </label>
+
+          <details class="info"><summary>About this data</summary>
+            Counts are logged services provided by the Victim-Witness Assistance Program.
+          </details>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===== 4 · SPECIAL CRIMES ====================================== -->
+    <section id="special" class="dash">
+      <h2>Special Crimes</h2>
+
+      <div class="wrap">
+        <div class="chart"><canvas id="specialBar"></canvas></div>
+
+        <form class="controls single">
+          <label>Year
+            <input id="specialYear" type="range" min="2011" max="2025" value="2025">
+            <span id="specialYearOut">2025</span>
+          </label>
+
+          <details class="info"><summary>About this data</summary>
+            Unit focuses on major fraud, elder abuse, and public-integrity cases.
+          </details>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===== 5 · NARCOTICS =========================================== -->
+    <section id="narcotics" class="dash">
+      <h2>Narcotics by Schedule</h2>
+
+      <div class="wrap">
+        <div class="chart"><canvas id="narcoticsStack"></canvas></div>
+
+        <form class="controls single">
+          <label>Year
+            <input id="narcYear" type="range" min="2011" max="2025" value="2025">
+            <span id="narcYearOut">2025</span>
+          </label>
+
+          <details class="info"><summary>About this data</summary>
+            Case counts include possession, trafficking, and manufacturing charges by federal drug-schedule class.
+          </details>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===== BY THE NUMBERS ========================================= -->
+    <section id="numbers" class="dash">
+      <h2>By the Numbers</h2>
+
+      <div class="stats">
+        <div><span class="value">547</span><span class="label">convictions last year</span></div>
+        <div><span class="value">67</span><span class="label">violent offenders put away</span></div>
+        <div><span class="value">282</span><span class="label">median days to close</span></div>
+        <div><span class="value">92%</span><span class="label">overall conviction rate</span></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ==================================================== -->
+  <footer>&copy; <span id="yearNow"></span> Imperial County District Attorney’s Office</footer>
+
+  <!-- logic -->
+  <script src="script.js" defer></script>
 </body>
 </html>
