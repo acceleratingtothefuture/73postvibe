@@ -1,141 +1,173 @@
+/* ==========================================================
+   IMPERIAL COUNTY DA · DASHBOARDS · style.css
+   Compact, responsive, max-600px charts, inline <details>
+   ========================================================== */
 
-:root {
-    --main-color: hsl(240, 100%, 5%);
-    --navbar-and-footer-color: hsl(240, 100%, 10%); 
-    --gradcolor-1: hsla(260, 100%, 30%, 0.5);
-    --gradcolor-2: hsla(260, 100%, 15%, 0.5);
-    --prettywhite: hsla(0, 0%, 100%, 0.727);
-    --cardcolor: hsl(225, 26%, 15%);
+/* ---------- 1. Variables ---------- */
+:root{
+  /* palette */
+  --bg:#05051a;
+  --nav:#040425;
+  --panel:#1b1f3b;
+  --accent:#6992ff;
+  --accent-alt:#ff9f40;
+  --text:#dfe3f7;
+  --sub:#a9b0d4;
+
+  /* shape / elevation */
+  --radius:12px;
+  --shadow:0 3px 10px rgb(0 0 0 /.35);
+
+  /* type scale */
+  --fs-h1:clamp(2rem,3.8vw,2.8rem);
+  --fs-h2:clamp(1.45rem,3vw,2rem);
 }
 
-/* typography */ 
-#wholebody{
-    font-family: 'Playfair Display', serif;
+/* ---------- 2. Reset / Base ---------- */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Lato',sans-serif;
+  line-height:1.45;
+  font-size:16px;
 }
-#hero {
-    font-family: 'Playfair Display', serif;
-}
+h1,h2{font-weight:700;letter-spacing:.01em;line-height:1.15}
+h1{font-size:var(--fs-h1)}
+h2{font-size:var(--fs-h2);margin-bottom:1rem}
+a{color:inherit;text-decoration:none}
+input,select,summary{font:inherit;color:inherit}
 
-#wholebody {
-    background-color: var(--main-color);
-    margin: 0;
-    padding: 0;
+/* ---------- 3. Navbar ---------- */
+.nav{
+  position:sticky;top:0;z-index:999;
+  display:flex;justify-content:space-between;align-items:center;
+  background:var(--nav);
+  padding:.6rem 1rem;
+  box-shadow:var(--shadow);
 }
+.branding{display:flex;flex-direction:column;line-height:1.1}
+.brand-main{font-size:1.45rem}
+.brand-sub{font-size:.85rem;color:var(--sub)}
+.logo{height:58px;width:auto;flex-shrink:0}
 
-#hero{
-    margin: 0;
-    gap: 0;
-    padding: 0;
-    background: linear-gradient(275deg, var(--gradcolor-1), var(--gradcolor-2));
-    width: 100%;
-    display: flex;
-    align-items: center;     /* vertical */
-    justify-content: center;
-    flex-direction: column;
-}
-
-#heroheader{
-    color: hsl(0, 0%, 87%);
-    font-weight:600; 
-    margin-top: 2rem;
-    margin-bottom: 0.5rem;
-    font-size: 3rem;
-}
-
-#herotext{
-    font-family:'Lato',sans-serif;
-    color: var(--prettywhite);
-    margin-bottom: 3.5rem;
-}
-
-/* idk */ 
-#main{
-    margin: 90%;
-    gap: 0;
-    padding: 0;
-    width: 100%;
-}
-
-#navbar{
-    top: 0;
-    position: sticky;
-    display: flex;
-    justify-content: space-between;
-    background-color: var(--navbar-and-footer-color);
-    box-shadow: 10px 5px 5px hsl(240, 100%, 7%);
-}
-
-#navbar-text{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    color: var(--prettywhite);
-    margin-bottom: 0.5rem;
-    margin-left: 0.7em;
-    margin-top: 0.5rem;
-}
-
-#navbar-office-name{
-    font-size: 2.0rem;
-}
-
-#navbar-DA-name{
-    font-size: 1.0rem;
-}
-
-#logo{ /* this is messed up */ 
-    width:120px;
-    height:auto;
-    flex-shrink:0;  /*this line and the one below it stop the logo from squishing don't ask me how */ 
-    object-fit:contain;  
-    margin-top: -0.5em;
-    margin-bottom: -1rem;
-    padding: 0;
-}
-
-#quick-links{
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(440px,1fr)); /*this one is pretty complicated */ 
-    gap: 1.25em; /* gaps between rows and columns */ 
-    margin-top: -2.5rem; 
-    padding: 0.25rem;
-    font-family:'Lato',sans-serif;
-}
-
-/* this is super crazy its for the buttons at the */
-.btn-link{
-  background:hsl(225, 26%, 10%);          
-  border:2px solid hsl(233, 37%, 17%);    
-  color:hsl(232, 100%, 96%);              
-  font-weight:600;
-  padding:1.25rem;
+/* ---------- 4. Hero ---------- */
+.hero{
+  background:linear-gradient(275deg,#242673 30%,#15163d 100%);
   text-align:center;
-  text-decoration:none;
-  border-radius:8px;
-  box-shadow:0 4px 16px rgba(0,0,0,.6);
+  padding:2.8rem 1rem 2.2rem;
+}
+.hero p{font-size:1rem;color:var(--sub)}
+
+/* ---------- 5. Quick Links ---------- */
+.quick-links{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:.9rem;
+  margin-top:-2rem;
+  padding:0 1rem 1.8rem;
+}
+.link-btn{
+  display:block;padding:.9rem 1rem;
+  background:var(--panel);border:2px solid #15163d;
+  border-radius:var(--radius);box-shadow:var(--shadow);
+  font-weight:600;text-align:center;
   transition:transform .2s,background .2s;
-  display:block;                          
 }
-.btn-link:hover{
-  transform:translateY(-4px);
-  background:hsl(225, 26%, 20%);                     
-}
+.link-btn:hover{transform:translateY(-3px);background:#2b2e54}
 
-/* above is worth understanding */ 
+/* ---------- 6. Sections ---------- */
+.dash{padding:2.5rem 1rem}
 
-#footer{
-    margin-bottom: 0;
-    gap: 0;
-    padding:1rem 0; /*???*/ 
-    height:auto;
-    background-color: var(--navbar-and-footer-color);
-    color: var(--prettywhite);
-    font-family:'Lato',sans-serif;
-    display: flex;
-    justify-content: center;
+.wrap{
+  display:flex;flex-wrap:wrap;gap:1.5rem;
 }
 
-#copyright{
-    margin: 0;
-    padding: 0;
+/* ---------- 6a. Cards ---------- */
+.chart,.controls,.stats div{
+  background:var(--panel);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+
+/* charts */
+.chart{
+  flex:2 1 320px;
+  max-height:600px;                 /* cap size on desktops */
+  padding:1rem;
+  aspect-ratio:16/10;
+}
+.chart.square{aspect-ratio:1/1}
+.chart canvas{width:100%!important;height:100%!important}
+
+/* ---- keep pie charts perfectly square on any screen ---- */
+.chart.square{
+  flex:1 1 360px;          /* base width */
+  max-width:480px;         /* never wider than 480 px */
+  aspect-ratio:1/1;        /* always a true square      */
+  max-height:none;         /* let height follow width   */
+}
+
+
+/* controls */
+.controls{
+  flex:1 1 240px;
+  padding:1rem 1.2rem;
+  display:flex;flex-direction:column;gap:1rem;
+}
+.controls label{display:flex;flex-direction:column;font-size:.95rem;color:var(--sub)}
+.controls input[type=range]{accent-color:var(--accent)}
+.controls select{
+  background:#101223;border:1px solid #2e3356;
+  border-radius:4px;padding:.35rem;
+}
+.controls.single{max-width:300px;margin:0 auto}
+
+/* expandable info */
+.info{font-size:.9rem;color:var(--sub)}
+.info[open]{padding-top:.5rem}
+.info summary{
+  cursor:pointer;
+  list-style:none;
+  font-weight:600;
+  color:var(--text);
+}
+.info summary::marker,
+.info summary::-webkit-details-marker{display:none}
+.info summary::after{
+  content:"+";
+  margin-left:.3rem;
+  transition:transform .2s;
+}
+.info[open] summary::after{content:"−";transform:rotate(90deg)}
+
+/* ---------- 7. Stats ---------- */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:1rem;
+}
+.stats div{padding:1.6rem 1rem;text-align:center}
+.value{font-size:1.8rem;font-weight:700;display:block}
+.label{font-size:.85rem;color:var(--sub)}
+
+/* ---------- 8. Footer ---------- */
+footer{
+  text-align:center;
+  padding:1.2rem 0;
+  background:var(--nav);
+  color:var(--sub);
+  font-size:.85rem;
+  margin-top:3rem;
+}
+
+/* ---------- 9. Media Tweaks ---------- */
+@media (min-width:900px){
+  .chart{flex:2 1 450px}
+  .controls{flex:1 1 260px}
+}
+@media (max-width:600px){
+  .chart{flex:1 1 100%}
+  .controls{flex:1 1 100%}
 }
