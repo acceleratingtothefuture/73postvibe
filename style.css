@@ -1,0 +1,141 @@
+
+:root {
+    --main-color: hsl(240, 100%, 5%);
+    --navbar-and-footer-color: hsl(240, 100%, 10%); 
+    --gradcolor-1: hsla(260, 100%, 30%, 0.5);
+    --gradcolor-2: hsla(260, 100%, 15%, 0.5);
+    --prettywhite: hsla(0, 0%, 100%, 0.727);
+    --cardcolor: hsl(225, 26%, 15%);
+}
+
+/* typography */ 
+#wholebody{
+    font-family: 'Playfair Display', serif;
+}
+#hero {
+    font-family: 'Playfair Display', serif;
+}
+
+#wholebody {
+    background-color: var(--main-color);
+    margin: 0;
+    padding: 0;
+}
+
+#hero{
+    margin: 0;
+    gap: 0;
+    padding: 0;
+    background: linear-gradient(275deg, var(--gradcolor-1), var(--gradcolor-2));
+    width: 100%;
+    display: flex;
+    align-items: center;     /* vertical */
+    justify-content: center;
+    flex-direction: column;
+}
+
+#heroheader{
+    color: hsl(0, 0%, 87%);
+    font-weight:600; 
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+    font-size: 3rem;
+}
+
+#herotext{
+    font-family:'Lato',sans-serif;
+    color: var(--prettywhite);
+    margin-bottom: 3.5rem;
+}
+
+/* idk */ 
+#main{
+    margin: 90%;
+    gap: 0;
+    padding: 0;
+    width: 100%;
+}
+
+#navbar{
+    top: 0;
+    position: sticky;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--navbar-and-footer-color);
+    box-shadow: 10px 5px 5px hsl(240, 100%, 7%);
+}
+
+#navbar-text{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--prettywhite);
+    margin-bottom: 0.5rem;
+    margin-left: 0.7em;
+    margin-top: 0.5rem;
+}
+
+#navbar-office-name{
+    font-size: 2.0rem;
+}
+
+#navbar-DA-name{
+    font-size: 1.0rem;
+}
+
+#logo{ /* this is messed up */ 
+    width:120px;
+    height:auto;
+    flex-shrink:0;  /*this line and the one below it stop the logo from squishing don't ask me how */ 
+    object-fit:contain;  
+    margin-top: -0.5em;
+    margin-bottom: -1rem;
+    padding: 0;
+}
+
+#quick-links{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(440px,1fr)); /*this one is pretty complicated */ 
+    gap: 1.25em; /* gaps between rows and columns */ 
+    margin-top: -2.5rem; 
+    padding: 0.25rem;
+    font-family:'Lato',sans-serif;
+}
+
+/* this is super crazy its for the buttons at the */
+.btn-link{
+  background:hsl(225, 26%, 10%);          
+  border:2px solid hsl(233, 37%, 17%);    
+  color:hsl(232, 100%, 96%);              
+  font-weight:600;
+  padding:1.25rem;
+  text-align:center;
+  text-decoration:none;
+  border-radius:8px;
+  box-shadow:0 4px 16px rgba(0,0,0,.6);
+  transition:transform .2s,background .2s;
+  display:block;                          
+}
+.btn-link:hover{
+  transform:translateY(-4px);
+  background:hsl(225, 26%, 20%);                     
+}
+
+/* above is worth understanding */ 
+
+#footer{
+    margin-bottom: 0;
+    gap: 0;
+    padding:1rem 0; /*???*/ 
+    height:auto;
+    background-color: var(--navbar-and-footer-color);
+    color: var(--prettywhite);
+    font-family:'Lato',sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+#copyright{
+    margin: 0;
+    padding: 0;
+}
